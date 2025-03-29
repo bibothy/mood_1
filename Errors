@@ -1,20 +1,141 @@
+
+2025-03-30 01:13:42.682  1804-4643  ActivityTrigger         pid-1804                             E  activityStartTrigger: not whiteListedorg.moodapp/org.moodapp.ChatActivity/1
+2025-03-30 01:13:42.683  1804-4643  ActivityTrigger         pid-1804                             E  activityResumeTrigger: not whiteListedorg.moodapp/org.moodapp.ChatActivity/1
+2025-03-30 01:13:42.695  1804-3963  ActivityTrigger         pid-1804                             E  activityResumeTrigger: not whiteListedorg.moodapp/org.moodapp.ChatActivity/1
+---------------------------- PROCESS STARTED (26753) for package org.moodapp ----------------------------
+2025-03-30 01:30:44.573 26240-26240 ANR_LOG                 com.coloros.phonemanager             E  Current msg <1>  = { when=-1s831ms what=113 target=android.app.ActivityThread$H obj=ReceiverData{intent=Intent { act=oppo.intent.action.PACKAGE_REMOVED dat=package:org.moodapp flg=0x5000010 cmp=com.coloros.phonemanager/com.oplus.phonemanager.virusdetect.receiver.RealTimeMonitorReceiver (has extras) } packageName=com.coloros.phonemanager resultCode=0 resultData=null resultExtras=null} }
+2025-03-30 01:30:44.573 26240-26240 ANR_LOG                 com.coloros.phonemanager             E  Current msg <2>  = { when=-1s476ms what=113 target=android.app.ActivityThread$H obj=ReceiverData{intent=Intent { act=oppo.intent.action.PACKAGE_ADDED dat=package:org.moodapp flg=0x5000010 cmp=com.coloros.phonemanager/com.oplus.phonemanager.virusdetect.receiver.RealTimeMonitorReceiver (has extras) } packageName=com.coloros.phonemanager resultCode=0 resultData=null resultExtras=null} }
+2025-03-30 01:31:37.035  1804-3975  ActivityTrigger         system_server                        E  activityStartTrigger: not whiteListedorg.moodapp/org.moodapp.MainActivity/1
+2025-03-30 01:31:37.036  1804-3975  ActivityTrigger         system_server                        E  activityResumeTrigger: not whiteListedorg.moodapp/org.moodapp.MainActivity/1
+2025-03-30 01:31:37.062  1804-4568  ActivityTrigger         system_server                        E  activityResumeTrigger: not whiteListedorg.moodapp/org.moodapp.MainActivity/1
+2025-03-30 01:31:37.105 26753-26753 zygote64                org.moodapp                          I  Late-enabling -Xcheck:jni
+2025-03-30 01:31:37.339 26753-26753 FirebaseApp             org.moodapp                          I  Device unlocked: initializing all Firebase APIs for app [DEFAULT]
+2025-03-30 01:31:37.378 26753-26753 FirebaseInitProvider    org.moodapp                          I  FirebaseApp initialization successful
+2025-03-30 01:31:37.413 26753-26788 zygote64                org.moodapp                          W  Unsupported class loader
+2025-03-30 01:31:37.416 26753-26788 zygote64                org.moodapp                          W  Skipping duplicate class check due to unsupported classloader
+2025-03-30 01:31:37.421 26753-26788 DynamiteModule          org.moodapp                          I  Considering local module com.google.android.gms.measurement.dynamite:83 and remote module com.google.android.gms.measurement.dynamite:140
+2025-03-30 01:31:37.422 26753-26788 DynamiteModule          org.moodapp                          I  Selected remote version of com.google.android.gms.measurement.dynamite, version >= 140
+2025-03-30 01:31:37.422 26753-26788 DynamiteModule          org.moodapp                          V  Dynamite loader version >= 2, using loadModule2NoCrashUtils
+2025-03-30 01:31:37.468 26753-26788 ResourceType            org.moodapp                          W  ResTable_typeSpec entry count inconsistent: given 92, previously 95
+2025-03-30 01:31:37.469 26753-26788 ResourceType            org.moodapp                          W  ResTable_typeSpec entry count inconsistent: given 4684, previously 5293
+2025-03-30 01:31:37.469 26753-26788 ResourceType            org.moodapp                          W  ResTable_typeSpec entry count inconsistent: given 3276, previously 3296
+2025-03-30 01:31:37.469 26753-26788 ResourceType            org.moodapp                          W  ResTable_typeSpec entry count inconsistent: given 250, previously 254
+2025-03-30 01:31:37.469 26753-26788 ResourceType            org.moodapp                          W  ResTable_typeSpec entry count inconsistent: given 520, previously 5317
+2025-03-30 01:31:37.469 26753-26753 NetworkSecurityConfig   org.moodapp                          D  No Network Security Config specified, using platform default
+2025-03-30 01:31:37.496 26753-26753 AppCompatDelegate       org.moodapp                          D  Checking for metadata for AppLocalesMetadataHolderService : Service not found
+2025-03-30 01:31:37.509 26753-26788 zygote64                org.moodapp                          W  Unsupported class loader
+2025-03-30 01:31:37.512 26753-26788 zygote64                org.moodapp                          W  Skipping duplicate class check due to unsupported classloader
+2025-03-30 01:31:37.544 26753-26794 ActivityThread          org.moodapp                          E  Failed to find provider info for cn.teddymobile.free.anteater.den.provider
+2025-03-30 01:31:37.693 26753-26795 FA                      org.moodapp                          I  App measurement initialized, version: 118010
+2025-03-30 01:31:37.693 26753-26795 FA                      org.moodapp                          I  To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
+2025-03-30 01:31:37.694 26753-26795 FA                      org.moodapp                          I  To enable faster debug mode event logging run:
+                                                                                                      adb shell setprop debug.firebase.analytics.app org.moodapp
+2025-03-30 01:31:37.971 26753-26795 FA                      org.moodapp                          I  Tag Manager is not found and thus will not be used
+2025-03-30 01:31:37.986 26753-26828 OpenGLRenderer          org.moodapp                          D  HWUI GL Pipeline
+2025-03-30 01:31:38.026 26753-26753 Choreographer           org.moodapp                          I  Skipped 37 frames!  The application may be doing too much work on its main thread.
+2025-03-30 01:31:38.104 26753-26828 Adreno                  org.moodapp                          I  QUALCOMM build                   : 50c84eb, Ia11ce2d146
+                                                                                                    Build Date                       : 09/14/20
+                                                                                                    OpenGL ES Shader Compiler Version: EV031.22.00.01_06
+                                                                                                    Local Branch                     :
+                                                                                                    Remote Branch                    : refs/tags/AU_LINUX_ANDROID_LA.UM.6.6.2.C1.08.01.00.485.049
+                                                                                                    Remote Branch                    : NONE
+                                                                                                    Reconstruct Branch               : NOTHING
+2025-03-30 01:31:38.113 26753-26828 Adreno                  org.moodapp                          I  PFP: 0x005ff087, ME: 0x005ff063
+2025-03-30 01:31:38.120 26753-26828 zygote64                org.moodapp                          I  android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasWideColorDisplay retrieved: 0
+2025-03-30 01:31:38.121 26753-26828 OpenGLRenderer          org.moodapp                          I  Initialized EGL, version 1.4
+2025-03-30 01:31:38.121 26753-26828 OpenGLRenderer          org.moodapp                          D  Swap behavior 2
+2025-03-30 01:31:38.126 26753-26828 OpenGLRenderer          org.moodapp                          I  processName org.moodapp
+2025-03-30 01:31:38.160 26753-26753 Choreographer           org.moodapp                          I  Skipped 6 frames!  The application may be doing too much work on its main thread.
+2025-03-30 01:31:38.166 26753-26826 libc-netbsd             org.moodapp                          D  [getaddrinfo]:  hostname=api.telegram.org;  servname=(null);  app_pid=26753;  app_uid=10127;  ai_flags=1024;  ai_family=0; ai_socktype=1 from prox result 0
+2025-03-30 01:31:38.433 26753-26753 Choreographer           org.moodapp                          I  Skipped 15 frames!  The application may be doing too much work on its main thread.
+2025-03-30 01:31:38.445 26753-26753 Parcel                  org.moodapp                          E  Reading a NULL string not supported here.
+2025-03-30 01:31:38.521 26753-26759 zygote64                org.moodapp                          I  Do partial code cache collection, code=30KB, data=22KB
+2025-03-30 01:31:38.521 26753-26759 zygote64                org.moodapp                          I  After code cache collection, code=30KB, data=22KB
+2025-03-30 01:31:38.521 26753-26759 zygote64                org.moodapp                          I  Increasing code cache capacity to 128KB
+2025-03-30 01:31:39.401 26753-26826 MainActivity            org.moodapp                          I  Сообщение успешно отправлено через токен 7782370418:AAGuPd40pssvAlp7snMlBJ2VaacCXYFrRlM: Приложение запущено!
+2025-03-30 01:31:39.429 26753-26753 AndroidRuntime          org.moodapp                          D  Shutting down VM
+--------- beginning of crash
+2025-03-30 01:31:39.437 26753-26753 AndroidRuntime          org.moodapp                          E  FATAL EXCEPTION: main
+                                                                                                    Process: org.moodapp, PID: 26753
+                                                                                                    java.lang.RuntimeException: Unable to start activity ComponentInfo{org.moodapp/org.moodapp.MainActivity}: java.lang.NullPointerException: findViewById(...) must not be null
+                                                                                                    	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2995)
+                                                                                                    	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:3073)
+                                                                                                    	at android.app.ActivityThread.handleRelaunchActivity(ActivityThread.java:5062)
+                                                                                                    	at android.app.ActivityThread.-wrap18(Unknown Source:0)
+                                                                                                    	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1780)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:106)
+                                                                                                    	at android.os.Looper.loop(Looper.java:198)
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:7055)
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:523)
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:836)
+                                                                                                    Caused by: java.lang.NullPointerException: findViewById(...) must not be null
+                                                                                                    	at org.moodapp.MainActivity.onCreate(MainActivity.kt:127)
+                                                                                                    	at android.app.Activity.performCreate(Activity.java:7314)
+                                                                                                    	at android.app.Activity.performCreate(Activity.java:7305)
+                                                                                                    	at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1215)
+                                                                                                    	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2948)
+                                                                                                    	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:3073) 
+                                                                                                    	at android.app.ActivityThread.handleRelaunchActivity(ActivityThread.java:5062) 
+                                                                                                    	at android.app.ActivityThread.-wrap18(Unknown Source:0) 
+                                                                                                    	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1780) 
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:106) 
+                                                                                                    	at android.os.Looper.loop(Looper.java:198) 
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:7055) 
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method) 
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:523) 
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:836) 
+2025-03-30 01:31:39.454 26753-26759 zygote64                org.moodapp                          I  Do partial code cache collection, code=61KB, data=43KB
+2025-03-30 01:31:39.455 26753-26759 zygote64                org.moodapp                          I  After code cache collection, code=61KB, data=43KB
+2025-03-30 01:31:39.455 26753-26759 zygote64                org.moodapp                          I  Increasing code cache capacity to 256KB
+2025-03-30 01:31:39.686 26753-26877 MainActivity            org.moodapp                          I  Сообщение успешно отправлено через токен 7782370418:AAGuPd40pssvAlp7snMlBJ2VaacCXYFrRlM: Приложение упало!
+                                                                                                    Crash time: 20250330_013139
+                                                                                                    Exception: Unable to start activity ComponentInfo{org.moodapp/org.moodapp.MainActivity}: java.lang.NullPointerException: findViewById(...) must not be null
+                                                                                                    Stack trace:
+                                                                                                    android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2995)
+                                                                                                    android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:3073)
+                                                                                                    android.app.ActivityThread.handleRelaunchActivity(ActivityThread.java:5062)
+                                                                                                    android.app.ActivityThread.-wrap18(Unknown Source:0)
+                                                                                                    android.app.ActivityThread$H.handleMessage(ActivityThread.java:1780)
+                                                                                                    android.os.Handler.dispatchMessage(Handler.java:106)
+                                                                                                    android.os.Looper.loop(Looper.java:198)
+                                                                                                    android.app.ActivityThread.main(ActivityThread.java:7055)
+                                                                                                    java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:523)
+2025-03-30 01:31:42.291 26753-26761 zygote64                org.moodapp                          I  Debugger is no longer active
+2025-03-30 01:31:42.294 26753-26760 zygote64                org.moodapp                          I  WaitForSignal ShouldHalt is true
+2025-03-30 01:31:42.294 26753-26760 zygote64                org.moodapp                          I  SignalCatcher::Run ShouldHalt is true
+
+
+
+--------- beginning of system
+--------- beginning of main
+2025-03-30 01:13:42.677  1804-4643  ActivityManager         pid-1804                             I  START u0 {cmp=org.moodapp/.ChatActivity} from uid 10127 and from pid 25065
+2025-03-30 01:13:42.682  1804-4643  ActivityTrigger         pid-1804                             E  activityStartTrigger: not whiteListedorg.moodapp/org.moodapp.ChatActivity/1
+2025-03-30 01:13:42.683  1804-4643  ActivityTrigger         pid-1804                             E  activityResumeTrigger: not whiteListedorg.moodapp/org.moodapp.ChatActivity/1
+2025-03-30 01:13:42.695  1804-3963  ActivityTrigger         pid-1804                             E  activityResumeTrigger: not whiteListedorg.moodapp/org.moodapp.ChatActivity/1
+2025-03-30 01:16:46.368  1804-2003  WindowManager           pid-1804                             W  Force clearing freeze: AppWindowToken{ad7b66b token=Token{559d7ba ActivityRecord{35b80e5 u0 org.moodapp/.ChatActivity t53}}}
+2025-03-30 01:16:46.368  1804-2003  WindowManager           pid-1804                             I  Screen frozen for +2s265ms due to AppWindowToken{ad7b66b token=Token{559d7ba ActivityRecord{35b80e5 u0 org.moodapp/.ChatActivity t53}}}
+2025-03-30 01:17:43.026  1804-2003  WindowManager           pid-1804                             W  Force clearing freeze: AppWindowToken{ad7b66b token=Token{559d7ba ActivityRecord{35b80e5 u0 org.moodapp/.ChatActivity t53}}}
+2025-03-30 01:17:43.026  1804-2003  WindowManager           pid-1804                             I  Screen frozen for +2s211ms due to AppWindowToken{ad7b66b token=Token{559d7ba ActivityRecord{35b80e5 u0 org.moodapp/.ChatActivity t53}}}
+2025-03-30 01:17:43.600  1804-1910  ActivityManager         pid-1804                             W  Activity pause timeout for ActivityRecord{35b80e5 u0 org.moodapp/.ChatActivity t53}
+2025-03-30 01:17:53.612  1804-1910  ActivityManager         system_server                        W  Activity stop timeout for ActivityRecord{35b80e5 u0 org.moodapp/.ChatActivity t53}
+2025-03-30 01:30:30.638  1804-4048  ActivityManager         system_server                        I    Force finishing activity ActivityRecord{35b80e5 u0 org.moodapp/.ChatActivity t53}
+--------- beginning of crash
+
+
+из телеграмм
 Приложение упало!
-Crash time: 20250330_011342
-Exception: Unable to start activity ComponentInfo{org.moodapp/org.moodapp.ChatActivity}: java.lang.ClassCastException: java.lang.String cannot be cast to java.util.Set
+Crash time: 20250330_013139
+Exception: Unable to start activity ComponentInfo{org.moodapp/org.moodapp.MainActivity}: java.lang.NullPointerException: findViewById(...) must not be null
 Stack trace:
 android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2995)
 android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:3073)
-android.app.ActivityThread.-wrap11(Unknown Source:0)
-android.app.ActivityThread$H.handleMessage(ActivityThread.java:1774)
+android.app.ActivityThread.handleRelaunchActivity(ActivityThread.java:5062)
+android.app.ActivityThread.-wrap18(Unknown Source:0)
+android.app.ActivityThread$H.handleMessage(ActivityThread.java:1780)
 android.os.Handler.dispatchMessage(Handler.java:106)
 android.os.Looper.loop(Looper.java:198)
 android.app.ActivityThread.main(ActivityThread.java:7055)
 java.lang.reflect.Method.invoke(Native Method)
 com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:523)
-com.android.internal.os.ZygoteInit.main(ZygoteInit.java:836)
-
---------- beginning of system
---------- beginning of main
-2025-03-30 01:13:42.682  1804-4643  ActivityTrigger         system_server                        E  activityStartTrigger: not whiteListedorg.moodapp/org.moodapp.ChatActivity/1
-2025-03-30 01:13:42.683  1804-4643  ActivityTrigger         system_server                        E  activityResumeTrigger: not whiteListedorg.moodapp/org.moodapp.ChatActivity/1
-2025-03-30 01:13:42.695  1804-3963  ActivityTrigger         system_server                        E  activityResumeTrigger: not whiteListedorg.moodapp/org.moodapp.ChatActivity/1
