@@ -68,12 +68,27 @@ class ChatActivity : AppCompatActivity() {
 
     private fun loadMessages() {
         val prefs = getSharedPreferences("ChatPrefs", MODE_PRIVATE)
-        val messagesSet = prefs.getStringSet("messages", emptySet())
+        val editor = prefs.edit()
+
+        // Проверяем, что хранится под ключом "messages"
+        val messagesSet: Set<String>? = try {
+            prefs.getStringSet("messages", emptySet())
+        } catch (e: ClassCastException) {
+            Log.e("ChatActivity", "Ошибка: под ключом 'messages' хранится String вместо Set. Очищаем данные.")
+            // Проверяем, что там String, и конвертируем его в Set
+            val stringValue = prefs.getString("messages", null)
+            if (stringValue != null) {
+                setOf(stringValue) // Преобразуем String в Set с одним элементом
+            } else {
+                editor.remove("messages").apply() // Удаляем некорректные данные
+                emptySet()
+            }
+        }
+
+        messages.clear()
         if (messagesSet == null || messagesSet.isEmpty()) {
-            Log.w("ChatActivity", "Ничего не загружено из SharedPreferences")
-            messages.clear() // Очищаем список, чтобы не было старых данных
+            Log.w("ChatActivity", "Нет сохранённых сообщений в SharedPreferences")
         } else {
-            messages.clear()
             messages.addAll(messagesSet.map { Message("Пёс", it) })
             Log.d("ChatActivity", "Загружено сообщений: ${messages.size}")
         }
