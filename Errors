@@ -1,0 +1,92 @@
+--------- beginning of main
+--------- beginning of system
+2025-03-30 00:55:46.970  1804-2925  ActivityTrigger         system_server                        E  activityStartTrigger: not whiteListedorg.moodapp/org.moodapp.MainActivity/1
+2025-03-30 00:55:46.971  1804-2925  ActivityTrigger         system_server                        E  activityResumeTrigger: not whiteListedorg.moodapp/org.moodapp.MainActivity/1
+2025-03-30 00:55:47.010  1804-1842  ActivityTrigger         system_server                        E  activityResumeTrigger: not whiteListedorg.moodapp/org.moodapp.MainActivity/1
+---------------------------- PROCESS STARTED (24107) for package org.moodapp ----------------------------
+2025-03-30 00:56:25.444  1804-2937  ActivityTrigger         system_server                        E  activityStartTrigger: not whiteListedorg.moodapp/org.moodapp.ChatActivity/1
+2025-03-30 00:56:25.445  1804-2937  ActivityTrigger         system_server                        E  activityResumeTrigger: not whiteListedorg.moodapp/org.moodapp.ChatActivity/1
+2025-03-30 00:56:25.458  1804-2937  ActivityTrigger         system_server                        E  activityResumeTrigger: not whiteListedorg.moodapp/org.moodapp.ChatActivity/1
+---------------------------- PROCESS ENDED (24107) for package org.moodapp ----------------------------
+2025-03-30 00:56:49.103  1804-24492 ActivityManager         system_server                        E  ANR in org.moodapp (org.moodapp/.ChatActivity)
+                                                                                                    PID: 24107
+                                                                                                    Reason: Input dispatching timed out (Waiting because the touched window is paused.)
+                                                                                                    Parent: org.moodapp/.MainActivity
+                                                                                                    Load: 3.95 / 4.47 / 4.26
+                                                                                                    CPU usage from 5138ms to 14370ms later (2025-03-30 00:56:39.818 to 2025-03-30 00:56:49.051) with 99% awake:
+                                                                                                      20% 1804/system_server: 14% user + 6.4% kernel / faults: 1621 minor 33 major
+                                                                                                      3.7% 470/logd: 0.7% user + 3% kernel / faults: 1127 minor 297 major
+                                                                                                      2.9% 2904/com.android.phone: 2.1% user + 0.7% kernel / faults: 1732 minor 135 major
+                                                                                                      2.8% 704/surfaceflinger: 1.4% user + 1.4% kernel / faults: 704 minor 14 major
+                                                                                                      2.5% 5179/com.android.systemui: 1.6% user + 0.9% kernel / faults: 871 minor 31 major
+                                                                                                      1.3% 6810/kworker/u16:5: 0% user + 1.3% kernel
+                                                                                                      1.8% 676/android.hardware.sensors@1.0-service: 0.8% user + 0.9% kernel / faults: 254 minor
+                                                                                                      0.3% 3996/com.coloros.appmanager: 0.1% user + 0.1% kernel / faults: 1666 minor 249 major
+                                                                                                      1.1% 137/kswapd0: 0% user + 1.1% kernel
+                                                                                                      1% 671/android.hardware.graphics.composer@2.1-service: 0.4% user + 0.6% kernel / faults: 229 minor
+                                                                                                      0.6% 23192/kworker/u16:3: 0% user + 0.6% kernel
+                                                                                                      0% 1183/media.codec: 0% user + 0% kernel / faults: 1698 minor 65 major
+                                                                                                      0.7% 328/mmc-cmdqd/0: 0% user + 0.7% kernel
+                                                                                                      0% 4980/com.oppo.gestureservice: 0% user + 0% kernel / faults: 2470 minor 223 major
+                                                                                                      0.4% 21677/com.google.android.gms: 0.4% user + 0% kernel / faults: 970 minor 2 major
+                                                                                                      0.6% 674/android.hardware.memtrack@1.0-service: 0% user + 0.6% kernel / faults: 612 minor
+                                                                                                      0.1% 6837/com.google.android.inputmethod.latin: 0.1% user + 0% kernel / faults: 418 minor 28 major
+                                                                                                      0.5% 14312/kworker/u16:1: 0% user + 0.5% kernel
+                                                                                                      0.5% 23463/adbd: 0.1% user + 0.4% kernel / faults: 183 minor
+                                                                                                      0.5% 23614/process-tracker: 0% user + 0.5% kernel / faults: 126 minor
+                                                                                                      0.4% 428/ueventd: 0.1% user + 0.3% kernel / faults: 23 minor
+                                                                                                      0% 1166/media.extractor: 0% user + 0% kernel / faults: 1637 minor 40 major
+                                                                                                      0.1% 3768/com.oppo.launcher: 0% user + 0% kernel / faults: 1435 minor 79 major
+                                                                                                      0.4% 20845/kworker/u16:7: 0% user + 0.4% kernel
+                                                                                                      0.2% 24107/org.moodapp: 0% user + 0.2% kernel / faults: 136 minor 4 major
+                                                                                                      0.2% 471/servicemanager: 0.1% user + 0% kernel / faults: 87 minor
+                                                                                                      0.3% 21122/kworker/3:0: 0% user + 0.3% kernel
+                                                                                                      0.1% 1//init: 0% user + 0% kernel / faults: 10 minor
+                                                                                                      0.1% 29/rcuop/2: 0% user + 0.1% kernel
+                                                                                                      0.2% 244/kgsl_worker_thr: 0% user + 0.2% kernel
+                                                                                                      0.1% 3586/neo: 0% user + 0% kernel / faults: 7 minor
+                                                                                                      0.1% 3600/sugov:0: 0% user + 0.1% kernel
+                                                                                                      0% 4998/com.coloros.exserviceui: 0% user + 0% kernel / faults: 274 minor 30 major
+                                                                                                      0.2% 23105/mdss_fb0: 0% user + 0.2% kernel
+                                                                                                      0.1% 7/rcu_preempt: 0% user + 0.1% kernel
+                                                                                                      0% 10/rcuop/0: 0% user + 0% kernel
+                                                                                                      0% 21/rcuop/1: 0% user + 0% kernel
+                                                                                                      0% 37/rcuop/3: 0% user + 0% kernel
+                                                                                                      0% 93/system: 0% user + 0% kernel
+                                                                                                      0% 105/kworker/u17:1: 0% user + 0% kernel
+                                                                                                      0% 670/android.hardware.graphics.allocator@2.0-service: 0% user + 0% kernel / faults: 28 minor 7 major
+                                                                                                      0% 675/android.hardware.power@1.0-service: 0% user + 0% kernel
+                                                                                                      0.1% 691/healthd: 0% user + 0.1% kernel / faults: 30 minor
+                                                                                                      0% 703/lmkd: 0% user + 0% kernel
+                                                                                                      0% 999/jbd2/dm-0-8: 0% user + 0% kernel
+                                                                                                      0% 1099/cnd: 0% user + 0% kernel
+                                                                                                      0% 1116/audioserver: 0% user + 0% kernel / faults: 136 minor 37 major
+                                                                                                      0% 1174/netd: 0% user + 0% kernel / faults: 1 minor
+                                                                                                      0% 1182/wificond: 0% user + 0% kernel / faults: 11 minor
+                                                                                                      0.1% 1211/tombstoned: 0.1% user + 0% kernel / faults: 77 minor
+                                                                                                      0% 1264/kworker/10:0: 0% user + 0% kernel
+                                                                                                      0% 1337/msm_irqbalance: 0% user + 0% kernel / faults: 63 minor
+                                                                                                      0% 2609/VosMCThread: 0% user + 0% kernel
+                                                                                                      0% 2675/com.android.bluetooth: 0% user + 0% kernel / faults: 97 minor
+                                                                                                      0% 2857/.dataservices: 0% user + 0% kernel / faults: 7 minor
+                                                                                                      0% 3672/com.coloros.oppoguardelf: 0% user + 0% kernel / faults: 303 minor
+                                                                                                      0% 4609/com.google.android.gms.persistent: 0% user + 0% kernel / faults: 307 minor 2 major
+                                                                                                      0% 5473/com.coloros.athena: 0% user + 0% kernel / faults: 245 minor 3 major
+                                                                                                      0.1% 19008/kworker/0:1: 0% user + 0.1% kern
+2025-03-30 00:56:49.263  1804-2293  InputDispatcher         system_server                        E  channel '5717937 org.moodapp/org.moodapp.MainActivity (server)' ~ Channel is unrecoverably broken and will be disposed
+
+
+Приложение упало!
+Crash time: 20250330_005625
+Exception: Unable to start activity ComponentInfo{org.moodapp/org.moodapp.ChatActivity}: java.lang.ClassCastException: java.lang.String cannot be cast to java.util.Set
+Stack trace:
+android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2995)
+android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:3073)
+android.app.ActivityThread.-wrap11(Unknown Source:0)
+android.app.ActivityThread$H.handleMessage(ActivityThread.java:1774)
+android.os.Handler.dispatchMessage(Handler.java:106)
+android.os.Looper.loop(Looper.java:198)
+android.app.ActivityThread.main(ActivityThread.java:7055)
+java.lang.reflect.Method.invoke(Native Method)
+com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:523)
+com.android.internal.os.ZygoteInit.main(ZygoteInit.java:836)
