@@ -7,6 +7,7 @@ import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -20,7 +21,6 @@ class ChatActivity : AppCompatActivity() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val message = intent?.getStringExtra("message")
             if (message != null) {
-                Log.d("ChatActivity", "Получил сообщение через Broadcast: $message")
                 messages.add(Message("Пёс", message))
                 adapter.notifyItemInserted(messages.size - 1)
                 recyclerView.scrollToPosition(messages.size - 1)
@@ -40,7 +40,6 @@ class ChatActivity : AppCompatActivity() {
             stackFromEnd = true
         }
 
-        // Если открыто через уведомление, добавляем сообщение
         intent.getStringExtra("message")?.let { message ->
             if (!messages.any { it.text == message }) {
                 messages.add(Message("Пёс", message))
@@ -52,7 +51,9 @@ class ChatActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        registerReceiver(messageReceiver, IntentFilter("new_message"))
+        // Регистрация с флагом RECEIVER_NOT_EXPORTED
+        val filter = IntentFilter("new_message")
+        ContextCompat.registerReceiver(this, messageReceiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED)
     }
 
     override fun onStop() {
@@ -61,10 +62,10 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun loadMessages() {
-        val prefs = getSharedPreferences("ChatPrefs", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("ChatPrefs", MODE_PRIVATE)
         val messagesSet = prefs.getStringSet("messages", emptySet()) ?: emptySet()
         messages.clear()
         messages.addAll(messagesSet.map { Message("Пёс", it) })
-        Log.d("ChatActivity", "Загрузил сообщений: ${messages.size}")
+        Log.d("ChatActivity", "Загружено сообщений: ${messages.size}")
     }
 }
