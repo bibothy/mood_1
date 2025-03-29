@@ -1,3 +1,4 @@
+// /Users/george/PycharmProjects/mood/mood_1/settings.gradle
 pluginManagement {
     repositories {
         google()

@@ -1,3 +1,12 @@
 package org.moodapp
 
-data class Message(val sender: String, val text: String)
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "messages")
+data class Message(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val sender: String,
+    val text: String,
+    val timestamp: Long = System.currentTimeMillis()
+)
