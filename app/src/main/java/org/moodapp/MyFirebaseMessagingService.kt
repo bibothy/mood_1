@@ -7,7 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.core.content.edit // Импорт для KTX
+import androidx.core.content.edit
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -43,9 +43,24 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     private fun saveMessage(message: String) {
         val prefs = getSharedPreferences("ChatPrefs", MODE_PRIVATE)
-        val messages = prefs.getStringSet("messages", mutableSetOf())?.toMutableSet() ?: mutableSetOf()
+        val editor = prefs.edit()
+
+        // Проверяем тип данных под ключом "messages"
+        val messages: MutableSet<String> = try {
+            prefs.getStringSet("messages", mutableSetOf())?.toMutableSet() ?: mutableSetOf()
+        } catch (e: ClassCastException) {
+            Log.e("FCM", "Ошибка: под ключом 'messages' хранится String вместо Set. Преобразуем данные.")
+            val stringValue = prefs.getString("messages", null)
+            if (stringValue != null) {
+                mutableSetOf(stringValue) // Преобразуем String в Set
+            } else {
+                editor.remove("messages").apply() // Удаляем некорректные данные
+                mutableSetOf()
+            }
+        }
+
         messages.add(message)
-        prefs.edit { putStringSet("messages", messages) } // Используем KTX edit
+        editor.putStringSet("messages", messages).apply()
         Log.d("FCM", "Сообщение сохранено: $message")
     }
 
@@ -62,7 +77,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val channelId = "moodapp_channel"
         val notificationId = System.currentTimeMillis().toInt()
 
-        // Создание канала без проверки SDK_INT, так как minSdk >= 26
         val channel = NotificationChannel(channelId, "MoodApp Notifications", NotificationManager.IMPORTANCE_HIGH)
         notificationManager.createNotificationChannel(channel)
 
