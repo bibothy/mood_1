@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Mood</string>
+    <string-array name="fun_options">
+        <item>Увеселья с Псом</item>
+        <item>Крестики-нолики</item>
+        <item>Камень-ножницы-бумага</item>
+    </string-array>
+</resources>

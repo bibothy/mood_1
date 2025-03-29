@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "883260188946",
+    "project_id": "moodapp-49179",
+    "storage_bucket": "moodapp-49179.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883260188946:android:c7bda4679fdfdc6336abcb",
+        "android_client_info": {
+          "package_name": "org.moodapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVObCpOn3DXBsadMCj5D4pjgf4Z15LN88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
