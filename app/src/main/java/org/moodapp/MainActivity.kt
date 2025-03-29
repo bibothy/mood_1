@@ -1,4 +1,6 @@
+
 package org.moodapp
+
 
 import android.Manifest
 import android.app.NotificationChannel
@@ -21,7 +23,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.thread
 
+
 class MainActivity : AppCompatActivity() {
+
 
     private val TOKEN_KSYUSHA = "7782370418:AAGuPd40pssvAlp7snMlBJ2VaacCXYFrRlM"
     companion object {
@@ -29,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         private const val CHAT_ID = "361509391"
         private const val TELEGRAM_API_URL = "https://api.telegram.org"
         private val client = OkHttpClient()
+
 
         fun sendTelegramMessage(context: Context, text: String, token: String) {
             if (!isNetworkAvailable(context)) {
@@ -56,6 +61,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
         private fun isNetworkAvailable(context: Context): Boolean {
             val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val networkInfo = connectivityManager.activeNetworkInfo
@@ -63,9 +69,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     private var mediaPlayer: MediaPlayer? = null
     private val moodStats = mutableMapOf<String, Int>()
     private var isRunning = true
+
 
     private val moods = mapOf(
         "Плохо" to "Давай я тебя обниму, а если будет недостаточно, то найду какой-нибудь сладкий прикол для тебя))",
@@ -76,6 +84,7 @@ class MainActivity : AppCompatActivity() {
         "Радость" to "Юхууу!! Ты рада и я тоже рад вместе с тобой, это заразно!!!!"
     )
 
+
     private val desires = mapOf(
         "Воды" to "Да, сейчас принесу..",
         "Чай" to "Еще чай? ОЙ я забыл..",
@@ -85,6 +94,7 @@ class MainActivity : AppCompatActivity() {
         "КОФЕ" to "ЭХ КОТЕШКА, ТЕПЕРЬ Я НЕ СМОГУ ЗА НИМ СХОДИТЬ, НО МОГУ ЗАКАЗАТЬ!!! Для выбора кофе — кнопка снизу!"
     )
 
+
     private val coffeeOptions = mapOf(
         "Латте" to "Латте для котешки готово!",
         "Американо" to "Американо — бодрость для тебя!",
@@ -92,6 +102,7 @@ class MainActivity : AppCompatActivity() {
         "Капучино" to "Капучино — пена счастья для котешки!",
         "Выбери кофе котешке сам!!!" to "Котешка получит сюрприз!"
     )
+
 
     private val silliness = mapOf(
         "Мяу 1" to R.raw.mau_1,
@@ -109,6 +120,7 @@ class MainActivity : AppCompatActivity() {
         "Meow Sad" to R.raw.meow_sad
     )
 
+
     private val notificationPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
         if (isGranted) {
             Log.d("MainActivity", "Разрешение на уведомления получено")
@@ -117,6 +129,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
@@ -124,11 +137,13 @@ class MainActivity : AppCompatActivity() {
         }
         setContentView(R.layout.activity_main)
 
+
         val moodButton: Button = findViewById(R.id.mood_button)
         val desireButton: Button = findViewById(R.id.desire_button)
         val sillyButton: Button = findViewById(R.id.silly_button)
         val coffeeButton: Button = findViewById(R.id.coffee_button)
         val chatButton: Button = findViewById(R.id.chat_button)
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
@@ -136,10 +151,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
         createNotificationChannel()
         startMoodStatsTimer()
         sendTelegramMessage(this, "Приложение запущено!", TOKEN_KSYUSHA)
         // sendFcmTokenToPesBot() — убираем отсюда, оставляем только в MyFirebaseMessagingService
+
 
         moodButton.setOnClickListener {
             val options = moods.keys.toTypedArray()
@@ -160,6 +177,7 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
 
+
         desireButton.setOnClickListener {
             val options = desires.keys.toTypedArray()
             android.app.AlertDialog.Builder(this)
@@ -178,6 +196,7 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
 
+
         sillyButton.setOnClickListener {
             val options = silliness.keys.toTypedArray()
             android.app.AlertDialog.Builder(this)
@@ -191,6 +210,7 @@ class MainActivity : AppCompatActivity() {
                 .setNegativeButton("Отмена") { dialog, _ -> dialog.dismiss() }
                 .show()
         }
+
 
         coffeeButton.setOnClickListener {
             val options = coffeeOptions.keys.toTypedArray()
@@ -210,10 +230,12 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
 
+
         chatButton.setOnClickListener {
             startActivity(Intent(this, ChatActivity::class.java))
         }
     }
+
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -229,6 +251,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     private fun startMoodStatsTimer() {
         thread {
             while (isRunning) {
@@ -237,6 +260,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 
     private fun sendMoodStats() {
         if (moodStats.isNotEmpty()) {
@@ -250,6 +274,7 @@ class MainActivity : AppCompatActivity() {
             moodStats.clear()
         }
     }
+
 
     private fun handleCrash(throwable: Throwable) {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
@@ -265,6 +290,7 @@ class MainActivity : AppCompatActivity() {
         Thread.sleep(2000)
         finish()
     }
+
 
     private fun playSound(soundRes: Int) {
         try {
@@ -287,6 +313,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer?.release()
@@ -294,9 +321,11 @@ class MainActivity : AppCompatActivity() {
         isRunning = false
     }
 
+
     fun updateMoodStats(mood: String) {
         moodStats[mood] = moodStats.getOrDefault(mood, 0) + 1
     }
+
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
