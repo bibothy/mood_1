@@ -5,78 +5,132 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
-import androidx.work.workDataOf
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import kotlinx.coroutines.*
+import org.moodapp.database.MessageDao // Импорт DAO
+import org.moodapp.database.MessageEntity
+import kotlin.random.Random // Для уникальных ID уведомлений
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
-    companion object {
-        private const val TOKEN_KSYUSHA = "7782370418:AAGuPd40pssvAlp7snMlBJ2VaacCXYFrRlM"
+    private val TAG = "MyFirebaseMsgService" // Сократил для логов
+    private val serviceJob = Job()
+    // ИСПРАВЛЕНО: Используем Dispatchers.IO для операций с БД
+    private val serviceScope = CoroutineScope(Dispatchers.IO + serviceJob)
+
+    // Ленивое получение DAO
+    private val messageDao: MessageDao by lazy {
+        (applicationContext as MoodApplication).database.messageDao()
     }
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        Log.d("FCM", "Новый токен: $token")
-        MainActivity.sendTelegramMessage(this, "Новый FCM токен: $token", TOKEN_KSYUSHA)
+        Log.d(TAG, "Refreshed FCM token: $token")
+        // Отправляем токен в MainActivity через Broadcast, чтобы она отправила его боту Пес
+        val intent = Intent("send_token_to_telegram") // Действие для Broadcast
+        intent.putExtra("fcm_token", token)
+        // ИСПРАВЛЕНО: Используем sendBroadcast без явного пакета для простоты
+        sendBroadcast(intent)
+        Log.d(TAG,"Broadcast 'send_token_to_telegram' sent with new token.")
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
-        Log.d("FCM", "Получено сообщение: ${remoteMessage.data}")
+        Log.d(TAG, "FCM Message Received From: ${remoteMessage.from}")
 
-        val message = remoteMessage.data["message"]
-        if (message != null) {
-            val workRequest = OneTimeWorkRequestBuilder<MessageWorker>()
-                .setInputData(workDataOf("message" to message))
-                .build()
-            WorkManager.getInstance(this).enqueue(workRequest)
-            showNotification("Сообщение от Пса", message)
-        }
+        // Обработка Data Payload (предпочитаемый способ)
+        if (remoteMessage.data.isNotEmpty()) {
+            Log.d(TAG, "Message data payload: ${remoteMessage.data}")
+            val sender = remoteMessage.data["sender"] ?: "Пес" // Отправитель по умолчанию
+            val text = remoteMessage.data["text"] ?: "Пустое сообщение"
+            val timestamp = System.currentTimeMillis() // Текущее время
 
-        remoteMessage.notification?.let {
-            val title = it.title ?: "Сообщение от Пса"
-            val body = it.body ?: ""
-            showNotification(title, body)
+            val messageEntity = MessageEntity(sender = sender, text = text, timestamp = timestamp)
+
+            // Запускаем корутину для записи в БД
+            serviceScope.launch {
+                try {
+                    messageDao.insert(messageEntity)
+                    Log.d(TAG, "Message from $sender saved to DB.")
+
+                    // Показываем уведомление из основного потока
+                    withContext(Dispatchers.Main) {
+                        sendNotification(sender, text) // Показываем уведомление
+                    }
+                    // Broadcast больше не нужен, так как ChatActivity использует LiveData
+                    // val intent = Intent("new_message") ... sendBroadcast(intent) // УБРАНО
+
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error saving message to DB", e)
+                }
+            }
+        } else if (remoteMessage.notification != null) {
+            // Обработка Notification Payload (если Data Payload пуст)
+            Log.d(TAG, "Message Notification Body: ${remoteMessage.notification?.body}")
+            val title = remoteMessage.notification?.title ?: "Уведомление"
+            val body = remoteMessage.notification?.body ?: "Новое уведомление"
+            // Просто показываем уведомление как есть
+            sendNotification(title, body)
+            // В этом случае сообщение НЕ сохраняется в БД и чате,
+            // если только бэкенд не отправляет и data, и notification payload одновременно.
         }
     }
 
-    private fun showNotification(title: String, message: String) {
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val channelId = "moodapp_channel"
-        val notificationId = System.currentTimeMillis().toInt()
-
-        val channel = NotificationChannel(
-            channelId,
-            "MoodApp Notifications",
-            NotificationManager.IMPORTANCE_HIGH
-        ).apply {
-            description = "Уведомления от MoodApp"
-        }
-        notificationManager.createNotificationChannel(channel)
-
-        val intent = Intent(this, ChatActivity::class.java).apply {
-            putExtra("message", message)
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-        }
+    private fun sendNotification(title: String, messageBody: String) {
+        // Интент для открытия ChatActivity при клике на уведомление
+        val intent = Intent(this, ChatActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) // Флаги для правильной навигации
         val pendingIntent = PendingIntent.getActivity(
-            this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            this,
+            0 /* Request code */,
+            intent,
+            // ИСПРАВЛЕНО: Используем FLAG_IMMUTABLE, обязательно для Android 12+
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        val notification = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(android.R.drawable.ic_dialog_info)
-            .setContentTitle(title)
-            .setContentText(message)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setAutoCancel(true)
-            .setContentIntent(pendingIntent)
-            .build()
+        // Используем ID канала из ресурсов strings.xml
+        val channelId = getString(R.string.default_notification_channel_id)
 
-        notificationManager.notify(notificationId, notification)
-        Log.d("FCM", "Уведомление показано: $message")
+        // Строим уведомление
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            // ИСПРАВЛЕНО: Убедитесь что иконка ic_notification существует в res/drawable
+            .setSmallIcon(R.drawable.ic_notification)
+            .setContentTitle(title)
+            .setContentText(messageBody)
+            .setAutoCancel(true) // Уведомление исчезнет после клика
+            .setPriority(NotificationCompat.PRIORITY_HIGH) // Высокий приоритет
+            .setContentIntent(pendingIntent) // Действие по клику
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        // Создаем канал уведомлений для Android O (8.0) и выше (если еще не создан)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                "Сообщения чата", // Имя канала, видимое пользователю
+                NotificationManager.IMPORTANCE_HIGH // Важность для всплывающих уведомлений
+            ).apply {
+                description = "Уведомления о новых сообщениях от Пса"
+                // Можно добавить настройки вибрации, света и т.д.
+            }
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Показываем уведомление с уникальным ID
+        // ИСПРАВЛЕНО: Используем Random.nextInt() для генерации ID
+        val notificationId = Random.nextInt()
+        notificationManager.notify(notificationId, notificationBuilder.build())
+        Log.d(TAG, "Notification sent with ID: $notificationId")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Отменяем все корутины при уничтожении сервиса
+        serviceJob.cancel()
+        Log.d(TAG,"FirebaseMessagingService destroyed, scope cancelled.")
     }
 }

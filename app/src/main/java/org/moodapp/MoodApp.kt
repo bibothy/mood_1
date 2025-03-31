@@ -2,6 +2,7 @@ package org.moodapp
 
 import android.app.Application
 import androidx.room.Room
+import org.moodapp.database.AppDatabase
 
 class MoodApp : Application() {
     companion object {
