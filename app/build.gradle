@@ -1,107 +1,53 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.gms.google-services")
-    // ИСПОЛЬЗУЕМ KAPT (можно заменить на KSP, если настроите)
-    id("kotlin-kapt")
+    id 'com.android.application' version '8.7.1' // Последняя версия AGP на март 2025
+    id 'org.jetbrains.kotlin.android' version '2.1.10' // Последняя версия Kotlin
+    id 'org.jetbrains.kotlin.kapt' version '2.1.10' // Совместимая версия для kapt
+    id 'com.google.gms.google-services' version '4.4.2' // Последняя стабильная версия
 }
 
 android {
-    namespace = "org.moodapp" // Убедитесь, что namespace правильный
-    compileSdk = 34 // Используйте актуальный SDK
+    namespace 'org.moodapp'
+    compileSdk 35
 
     defaultConfig {
-        applicationId = "org.moodapp"
-        minSdk = 24 // API 24 (Android 7.0) или выше рекомендуется для Room/WorkManager
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        applicationId "org.moodapp"
+        minSdk 26
+        targetSdk 35
+        versionCode 1
+        versionName "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        // ID канала уведомлений по умолчанию (ссылка на ресурс)
-        resValue("string", "default_notification_channel_id", "mood_channel_chat")
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false // Отключено для простоты, можно включить с ProGuard правилами
-            proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
-            )
-        }
-        debug {
-            // Настройки для дебаг сборки
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        // ИСПРАВЛЕНО: Используем JavaVersion.VERSION_1_8 (или выше, например 17)
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-        // Раскомментируйте, если используете java.time и нужна поддержка < API 26
-        // isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8" // Должен совпадать с compileOptions
-    }
-    // Включение ViewBinding (опционально, но удобно для доступа к View)
-    buildFeatures {
-        viewBinding = true
+        jvmTarget = '1.8'
     }
 }
 
 dependencies {
+    implementation 'androidx.core:core-ktx:1.13.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.firebase:firebase-messaging-ktx:24.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.room:room-runtime:2.6.1'
+    kapt 'androidx.room:room-compiler:2.6.1'
+    implementation 'androidx.room:room-ktx:2.6.1'
+    implementation 'androidx.work:work-runtime-ktx:2.10.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
 
-    // Базовые зависимости AndroidX
-    implementation("androidx.core:core-ktx:1.13.1") // Замените на актуальные версии из toml
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4") // Если используете
-
-    // Firebase (BOM для управления версиями)
-    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
-    implementation("com.google.firebase:firebase-messaging-ktx") // Используем -ktx версию
-    // implementation("com.google.firebase:firebase-analytics-ktx") // Если нужна аналитика
-
-    // Networking (OkHttp)
-    implementation("com.squareup.okhttp3:okhttp:4.12.0") // Замените на актуальную версию
-    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0") // Для логов (рекомендуется)
-
-    // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0") // Замените на актуальную
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
-
-    // Lifecycle (ViewModel, LiveData, LifecycleScope)
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3") // Замените на актуальную
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
-    implementation("androidx.lifecycle:lifecycle-common-java8:2.8.3") // Для поддержки Java 8
-
-    // Room (База данных)
-    implementation("androidx.room:room-runtime:2.6.1") // Замените на актуальную
-    implementation("androidx.room:room-ktx:2.6.1") // Поддержка корутин и Flow
-    kapt("androidx.room:room-compiler:2.6.1") // Компилятор аннотаций для Kapt
-
-    // WorkManager (Фоновые задачи)
-    implementation("androidx.work:work-runtime-ktx:2.9.0") // Замените на актуальную
-
-    // RecyclerView (для чата)
-    implementation("androidx.recyclerview:recyclerview:1.3.2") // Замените на актуальную
-
-    // Gson (если где-то еще используется)
-    implementation("com.google.code.gson:gson:2.11.0") // Замените на актуальную
-
-    // Тесты (оставьте или обновите)
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-
-    // Desugaring (если используете coreLibraryDesugaringEnabled = true)
-    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
-}
-
-// Конфигурация Kapt (если используете)
-kapt {
-    correctErrorTypes = true
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 }
