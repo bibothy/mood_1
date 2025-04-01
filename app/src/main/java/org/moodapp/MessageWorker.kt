@@ -1,20 +1,18 @@
 package org.moodapp
 
-import android.content.Context
-import android.util.Log
-import androidx.work.CoroutineWorker
+import androidx.work.Worker
 import androidx.work.WorkerParameters
 
-class MessageWorker(appContext: Context, params: WorkerParameters) : CoroutineWorker(appContext, params) {
+class MessageWorker(appContext: android.content.Context, workerParams: WorkerParameters) :
+    Worker(appContext, workerParams) {
 
-    override suspend fun doWork(): Result {
-        val message = inputData.getString("message")
-        if (message != null) {
-            Log.d("MessageWorker", "Сохраняю сообщение: $message")
-            MoodApp.database.messageDao().insert(Message(sender = "Пёс", text = message))
-            return Result.success()
-        }
-        Log.w("MessageWorker", "Сообщение было null")
-        return Result.failure()
+    override fun doWork(): Result {
+        val database = AppDatabase.getDatabase(applicationContext)
+        val messageDao = database.messageDao()
+
+        val message = MessageEntity(content = "Test message from Worker")
+        messageDao.insert(message)
+
+        return Result.success()
     }
 }
