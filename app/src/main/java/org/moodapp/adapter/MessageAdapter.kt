@@ -1,4 +1,4 @@
-package org.moodapp
+package org.moodapp.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.moodapp.MessageEntity
+import org.moodapp.R
 
 class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
@@ -18,7 +19,7 @@ class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() 
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val message = messages[position]
-        holder.messageText.text = message.content
+        holder.messageText.text = "${message.sender}: ${message.text}"
     }
 
     override fun getItemCount(): Int = messages.size

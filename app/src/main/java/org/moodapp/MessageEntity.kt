@@ -3,11 +3,11 @@ package org.moodapp
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "messages") // Явно указываем имя таблицы
+@Entity(tableName = "messages")
 data class MessageEntity(
-    @PrimaryKey(autoGenerate = true) // Автогенерация ID
+    @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val sender: String,
     val text: String,
-    val timestamp: Long // Время получения/создания сообщения
+    val timestamp: Long
 )

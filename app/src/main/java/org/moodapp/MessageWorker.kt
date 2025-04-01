@@ -13,8 +13,15 @@ class MessageWorker(appContext: android.content.Context, workerParams: WorkerPar
             val database = AppDatabase.getDatabase(applicationContext)
             val messageDao = database.messageDao()
 
-            val message = MessageEntity(content = "Test message from Worker")
+            val message = MessageEntity(
+                sender = "Worker",
+                text = "Test message from Worker",
+                timestamp = System.currentTimeMillis()
+            )
             messageDao.insert(message)
+
+            val threshold = System.currentTimeMillis() - 24 * 60 * 60 * 1000
+            messageDao.deleteMessagesOlderThan(threshold)
 
             Result.success()
         }
