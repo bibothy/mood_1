@@ -11,8 +11,6 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import kotlinx.coroutines.*
-import org.moodapp.database.MessageDao // Импорт DAO
-import org.moodapp.database.MessageEntity
 import kotlin.random.Random // Для уникальных ID уведомлений
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {

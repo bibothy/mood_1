@@ -1,4 +1,4 @@
-package org.moodapp.database
+package org.moodapp
 
 import androidx.room.Dao
 import androidx.room.Insert

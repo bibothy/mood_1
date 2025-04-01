@@ -1,4 +1,4 @@
-package org.moodapp.worker
+package org.moodapp
 
 import android.content.Context
 import android.util.Log
@@ -9,10 +9,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
-import org.moodapp.MoodApplication // Импорт вашего Application класса
-import org.moodapp.database.MessageDao
 import java.io.IOException
-import java.util.*
 import java.util.concurrent.TimeUnit // Для времени
 
 class MoodStatsWorker(appContext: Context, workerParams: WorkerParameters) :

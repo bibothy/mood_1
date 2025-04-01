@@ -1,4 +1,4 @@
-package org.moodapp.adapter
+package org.moodapp
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.moodapp.MessageEntity
-import org.moodapp.R
 
 class MessageAdapter : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 

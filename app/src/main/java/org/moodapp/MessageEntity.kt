@@ -1,4 +1,4 @@
-package org.moodapp.database
+package org.moodapp
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
