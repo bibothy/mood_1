@@ -1,3 +1,5 @@
+Download https://dl.google.com/dl/android/maven2/com/android/application/com.android.application.gradle.plugin/8.7.3/com.android.application.gradle.plugin-8.7.3.pom, took 527 ms
+
 FAILURE: Build failed with an exception.
 
 * Where:
@@ -215,3 +217,5 @@ org.gradle.api.plugins.UnknownPluginException: Plugin [id: 'com.google.devtools.
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
 
+
+CONFIGURE FAILED in 6s
