@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import android.view.View
 import org.moodapp.databinding.ItemMessageBinding
 
-class MessageAdapter(private var messageList: MutableList<MessageEntity>) : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
+class MessageAdapter(private var messageList: MutableList<MessageEntity>, private val onDeleteMessage: (Int) -> Unit) : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     class MessageViewHolder(val binding: ItemMessageBinding) : RecyclerView.ViewHolder(binding.root)
     companion object {
@@ -21,6 +22,11 @@ class MessageAdapter(private var messageList: MutableList<MessageEntity>) : Recy
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val message = messageList[position]
         holder.binding.messageTextView.text = message.message
+        holder.binding.root.setOnClickListener {
+            val position = holder.adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+               onDeleteMessage(messageList[position].id)
+            }
     }
 
     override fun getItemCount(): Int = messageList.size

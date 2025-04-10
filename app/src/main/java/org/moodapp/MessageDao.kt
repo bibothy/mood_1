@@ -10,9 +10,12 @@ interface MessageDao {
     @Query("SELECT * FROM messages")
     fun getAllMessages(): List<MessageEntity>
 
-    @Insert
+    @Insert()
     fun insertMessage(message: MessageEntity)
 
     @Query("DELETE FROM messages")
     fun deleteAllMessages()
+    
+    @Query("DELETE FROM messages WHERE id = :messageId")
+    fun deleteMessageById(messageId: Int)
 }
