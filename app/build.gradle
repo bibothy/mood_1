@@ -1,8 +1,9 @@
 plugins {
     id 'com.android.application' version '8.7.1'
     id 'org.jetbrains.kotlin.android' version '1.9.24'
-    id 'org.jetbrains.kotlin.kapt' version '1.9.24'
+    id 'com.google.devtools.ksp' version '1.9.24-1.0.16'
     id 'com.google.gms.google-services' version '4.4.2'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -28,6 +29,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures{
+        viewBinding = true
+    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -40,11 +44,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.firebase:firebase-messaging-ktx:24.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.3.2'
-    implementation 'androidx.room:room-runtime:2.6.1'
-    kapt 'androidx.room:room-compiler:2.6.1'
+    implementation "androidx.room:room-runtime:2.6.1"
     implementation 'androidx.room:room-ktx:2.6.1'
     implementation 'androidx.work:work-runtime-ktx:2.10.0'
-    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
     // Добавляем LiveData
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.6'
 
@@ -52,13 +54,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
     implementation 'androidx.work:work-runtime-ktx:2.10.0' // Уже есть
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0' // Добавляем
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.recyclerview:recyclerview:1.3.2'
-    implementation 'androidx.room:room-runtime:2.6.1'
-    kapt 'androidx.room:room-compiler:2.6.1'
-    implementation 'androidx.room:room-ktx:2.6.1'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.6'
-    implementation 'androidx.work:work-runtime-ktx:2.10.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0'
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    ksp("androidx.room:room-compiler:2.6.1")
 }

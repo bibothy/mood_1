@@ -9,8 +9,11 @@ class MoodApplication : Application() {
     // Убедитесь, что путь org.moodapp.database.AppDatabase правильный
     val database: AppDatabase by lazy { AppDatabase.getDatabase(this) }
 
+
     override fun onCreate() {
         super.onCreate()
-        // Любая другая инициализация приложения здесь
+        Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
+            CrashHandler.handleCrash(applicationContext, throwable)
+        }
     }
 }
