@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application' version '8.7.3'
+    id 'com.android.application' version '8.9.1'
     id 'org.jetbrains.kotlin.android' version '2.1.10'
     id 'com.google.devtools.ksp' version '1.9.24-1.0.16'
     id 'com.google.gms.google-services' version '4.4.2'
@@ -38,22 +38,22 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.13.0'
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'com.google.android.material:material:1.12.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.firebase:firebase-messaging-ktx:24.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.3.2'
-    implementation "androidx.room:room-runtime:2.6.1"
-    implementation 'androidx.room:room-ktx:2.6.1'
-    implementation 'androidx.work:work-runtime-ktx:2.10.0'
+    implementation libs.androidx.core.ktx.v1130
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.material
+    implementation libs.androidx.constraintlayout
+    implementation libs.google.firebase.messaging.ktx
+    implementation libs.androidx.recyclerview.v140
+    implementation libs.androidx.room.runtime.v270
+    implementation libs.androidx.room.ktx.v270
+    implementation libs.androidx.work.runtime.ktx.v2100
     // Добавляем LiveData
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.6'
+    implementation libs.androidx.lifecycle.livedata.ktx.v286
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
-    implementation 'androidx.work:work-runtime-ktx:2.10.0' // Уже есть
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    ksp("androidx.room:room-compiler:2.6.1")
+    testImplementation libs.test.junit
+    androidTestImplementation libs.androidx.test.junit
+    androidTestImplementation libs.androidx.test.espresso.core
+    implementation libs.androidx.work.runtime.ktx.v2100 // Уже есть
+    implementation(libs.okhttp)
+    ksp(libs.androidx.room.compiler.v270)
 }
