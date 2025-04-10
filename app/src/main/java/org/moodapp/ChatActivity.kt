@@ -1,6 +1,7 @@
 package org.moodapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ class ChatActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("ChatActivity", "onCreate called")
         setContentView(R.layout.activity_chat)
 
         val database = AppDatabase.getDatabase(this)
@@ -26,7 +28,9 @@ class ChatActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         messageDao.getAllMessages().asLiveData().observe(this) { messages: List<MessageEntity> ->
+            Log.d("ChatActivity", "Observing messages: ${messages.size}")
             adapter.updateMessages(messages)
+            Log.d("ChatActivity", "Messages updated in adapter")
         }
     }
 }
