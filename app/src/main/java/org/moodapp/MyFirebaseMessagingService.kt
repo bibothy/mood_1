@@ -38,10 +38,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
-        Log.d(TAG, "FCM Message Received From: ${remoteMessage.from}")
+        Log.d(TAG, "onMessageReceived called. FCM Message Received From: ${remoteMessage.from}")
 
         // Обработка Data Payload (предпочитаемый способ)
         if (remoteMessage.data.isNotEmpty()) {
+            Log.d(TAG, "Received data message")
             Log.d(TAG, "Message data payload: ${remoteMessage.data}")
             val sender = remoteMessage.data["sender"] ?: "Пес" // Отправитель по умолчанию
             val text = remoteMessage.data["text"] ?: "Пустое сообщение"
@@ -68,6 +69,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             }
         } else if (remoteMessage.notification != null) {
             // Обработка Notification Payload (если Data Payload пуст)
+            Log.d(TAG, "Received notification message")
             Log.d(TAG, "Message Notification Body: ${remoteMessage.notification?.body}")
             val title = remoteMessage.notification?.title ?: "Уведомление"
             val body = remoteMessage.notification?.body ?: "Новое уведомление"
