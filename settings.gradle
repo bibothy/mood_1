@@ -5,16 +5,13 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-repositories {
-    google()
-    mavenCentral()
-}
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
-        mavenCentral()
-    }
+    google()
+    mavenCentral()
 }
+}
+
 rootProject.name = "mood_1"
 include ':app'
