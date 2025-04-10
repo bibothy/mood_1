@@ -1,10 +1,10 @@
 FAILURE: Build failed with an exception.
 
 * Where:
-Build file '/Users/george/PycharmProjects/mood/mood_1/app/build.gradle' line: 2
+Build file '/Users/george/PycharmProjects/mood/mood_1/app/build.gradle' line: 3
 
 * What went wrong:
-Error resolving plugin [id: 'com.android.application', version: '8.9.1']
+Error resolving plugin [id: 'org.jetbrains.kotlin.android', version: '1.9.22']
 > The request for this plugin could not be satisfied because the plugin is already on the classpath with an unknown version, so compatibility cannot be checked.
 
 * Try:
@@ -13,7 +13,7 @@ Error resolving plugin [id: 'com.android.application', version: '8.9.1']
 > Get more help at https://help.gradle.org.
 
 * Exception is:
-org.gradle.api.GradleException: Error resolving plugin [id: 'com.android.application', version: '8.9.1']
+org.gradle.api.GradleException: Error resolving plugin [id: 'org.jetbrains.kotlin.android', version: '1.9.22']
 	at org.gradle.plugin.use.internal.DefaultPluginRequestApplicator.resolvePluginRequest(DefaultPluginRequestApplicator.java:188)
 	at org.gradle.plugin.use.internal.DefaultPluginRequestApplicator.applyPlugins(DefaultPluginRequestApplicator.java:97)
 	at org.gradle.configuration.DefaultScriptPluginFactory$ScriptPluginImpl.apply(DefaultScriptPluginFactory.java:126)
@@ -204,4 +204,4 @@ Caused by: org.gradle.plugin.management.internal.InvalidPluginRequestException: 
 	... 183 more
 
 
-CONFIGURE FAILED in 3m 30s
+CONFIGURE FAILED in 9s
